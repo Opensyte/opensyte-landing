@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import {
   Mail,
@@ -185,60 +186,56 @@ export default function HeroSection() {
 
                 <TabsContent value="crm" className="mt-4">
                   <div className="ring-background bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 dark:inset-shadow-white/20">
-                    <div className="bg-background relative hidden aspect-15/8 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-800 to-blue-900 dark:flex">
-                      <span className="text-lg text-white/80">
-                        CRM Dashboard Preview
-                      </span>
-                    </div>
-                    <div className="border-border/25 relative z-2 flex aspect-15/8 items-center justify-center rounded-2xl border bg-gradient-to-br from-blue-100 to-blue-200 dark:hidden">
-                      <span className="text-lg text-blue-700">
-                        CRM Dashboard Preview
-                      </span>
+                    <div className="flex items-center justify-center rounded-2xl">
+                      <img
+                        src="/crm.png"
+                        alt="CRM Dashboard Preview"
+                        width={1200}
+                        height={800}
+                        className="h-auto max-w-full rounded-2xl object-contain"
+                      />
                     </div>
                   </div>
                 </TabsContent>
 
                 <TabsContent value="finance" className="mt-4">
                   <div className="ring-background bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 dark:inset-shadow-white/20">
-                    <div className="bg-background relative hidden aspect-15/8 items-center justify-center rounded-2xl bg-gradient-to-br from-green-800 to-green-900 dark:flex">
-                      <span className="text-lg text-white/80">
-                        Finance Dashboard Preview
-                      </span>
-                    </div>
-                    <div className="border-border/25 relative z-2 flex aspect-15/8 items-center justify-center rounded-2xl border bg-gradient-to-br from-green-100 to-green-200 dark:hidden">
-                      <span className="text-lg text-green-700">
-                        Finance Dashboard Preview
-                      </span>
+                    <div className="flex items-center justify-center rounded-2xl">
+                      <img
+                        src="/finance.png"
+                        alt="Finance Dashboard Preview"
+                        width={1200}
+                        height={800}
+                        className="h-auto max-w-full rounded-2xl object-contain"
+                      />
                     </div>
                   </div>
                 </TabsContent>
 
                 <TabsContent value="project" className="mt-4">
                   <div className="ring-background bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 dark:inset-shadow-white/20">
-                    <div className="bg-background relative hidden aspect-15/8 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-800 to-purple-900 dark:flex">
-                      <span className="text-lg text-white/80">
-                        Project Management Preview
-                      </span>
-                    </div>
-                    <div className="border-border/25 relative z-2 flex aspect-15/8 items-center justify-center rounded-2xl border bg-gradient-to-br from-purple-100 to-purple-200 dark:hidden">
-                      <span className="text-lg text-purple-700">
-                        Project Management Preview
-                      </span>
+                    <div className="flex items-center justify-center rounded-2xl">
+                      <img
+                        src="/projects.png"
+                        alt="Project Management Preview"
+                        width={1200}
+                        height={800}
+                        className="h-auto max-w-full rounded-2xl object-contain"
+                      />
                     </div>
                   </div>
                 </TabsContent>
 
                 <TabsContent value="hr" className="mt-4">
                   <div className="ring-background bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 dark:inset-shadow-white/20">
-                    <div className="bg-background relative hidden aspect-15/8 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-800 to-orange-900 dark:flex">
-                      <span className="text-lg text-white/80">
-                        HR Dashboard Preview
-                      </span>
-                    </div>
-                    <div className="border-border/25 relative z-2 flex aspect-15/8 items-center justify-center rounded-2xl border bg-gradient-to-br from-orange-100 to-orange-200 dark:hidden">
-                      <span className="text-lg text-orange-700">
-                        HR Dashboard Preview
-                      </span>
+                    <div className="flex items-center justify-center rounded-2xl">
+                      <img
+                        src="/hr.png"
+                        alt="HR Dashboard Preview"
+                        width={1200}
+                        height={800}
+                        className="h-auto max-w-full rounded-2xl object-contain"
+                      />
                     </div>
                   </div>
                 </TabsContent>
