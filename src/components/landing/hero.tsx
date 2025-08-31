@@ -117,13 +117,13 @@ export default function HeroSection() {
               aria-hidden
               className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]"
             />
-            <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6">
               <div className="text-center sm:mx-auto lg:mt-0 lg:mr-auto">
                 <TextEffect
                   preset="fade-in-blur"
                   speedSegment={0.3}
                   as="h1"
-                  className="mx-auto mt-8 max-w-4xl text-4xl text-balance md:text-5xl lg:mt-16 xl:text-6xl"
+                  className="mx-auto mt-6 max-w-4xl text-3xl text-balance sm:mt-8 sm:text-4xl md:text-5xl lg:mt-16 xl:text-6xl"
                 >
                   Manage your business 100x more easily
                 </TextEffect>
@@ -133,7 +133,7 @@ export default function HeroSection() {
                   speedSegment={0.3}
                   delay={0.5}
                   as="p"
-                  className="mx-auto mt-8 max-w-2xl text-base text-balance md:text-lg"
+                  className="mx-auto mt-6 max-w-2xl px-4 text-sm text-balance sm:mt-8 sm:px-0 sm:text-base md:text-lg"
                 >
                   Manage your business with one platform that keeps tools
                   connected and lets you switch features quickly.
@@ -151,16 +151,16 @@ export default function HeroSection() {
                     },
                     ...transitionVariants,
                   }}
-                  className="mt-12 flex flex-col items-center justify-center"
+                  className="mt-8 flex flex-col items-center justify-center px-4 sm:mt-12 sm:px-0"
                 >
-                  <div className="w-full max-w-md">
+                  <div className="w-full max-w-sm sm:max-w-md">
                     <form onSubmit={handleSubmit}>
-                      <div className="bg-background has-[input:focus]:ring-muted relative grid grid-cols-[1fr_auto] items-center rounded-[calc(var(--radius)+0.5rem)] border pr-2 shadow shadow-zinc-950/5 has-[input:focus]:ring-2">
-                        <Mail className="pointer-events-none absolute inset-y-0 left-4 my-auto size-4" />
+                      <div className="bg-background has-[input:focus]:ring-muted relative grid grid-cols-[1fr_auto] items-center rounded-[calc(var(--radius)+0.5rem)] border pr-1.5 shadow shadow-zinc-950/5 has-[input:focus]:ring-2 sm:pr-2">
+                        <Mail className="pointer-events-none absolute inset-y-0 left-3 my-auto size-4 sm:left-4" />
 
                         <input
                           placeholder="Your mail address"
-                          className="h-12 w-full bg-transparent pl-12 focus:outline-none"
+                          className="h-11 w-full bg-transparent pr-2 pl-10 text-sm focus:outline-none sm:h-12 sm:pl-12 sm:text-base"
                           type="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
@@ -168,7 +168,7 @@ export default function HeroSection() {
                           required
                         />
 
-                        <div className="md:pr-1.5 lg:pr-0">
+                        <div className="pr-0.5 sm:pr-1 md:pr-1.5 lg:pr-0">
                           <Button
                             type="submit"
                             aria-label="submit"
@@ -180,25 +180,25 @@ export default function HeroSection() {
                           >
                             {addToWaitingListMutation.isPending ? (
                               <>
-                                <Loader2 className="h-4 w-4 animate-spin" />
-                                <span className="ml-2 hidden md:block">
+                                <Loader2 className="h-3 w-3 animate-spin sm:h-4 sm:w-4" />
+                                <span className="ml-1.5 hidden sm:ml-2 sm:block">
                                   Joining...
                                 </span>
                               </>
                             ) : isSubmitted ? (
                               <>
-                                <Check className="h-4 w-4" />
-                                <span className="ml-2 hidden md:block">
+                                <Check className="h-3 w-3 sm:h-4 sm:w-4" />
+                                <span className="ml-1.5 hidden sm:ml-2 sm:block">
                                   Joined!
                                 </span>
                               </>
                             ) : (
                               <>
-                                <span className="hidden md:block">
+                                <span className="hidden sm:block">
                                   Join waitlist
                                 </span>
                                 <SendHorizontal
-                                  className="relative mx-auto size-5 md:hidden"
+                                  className="relative mx-auto size-4 sm:hidden sm:size-5"
                                   strokeWidth={2}
                                 />
                               </>
@@ -207,7 +207,7 @@ export default function HeroSection() {
                         </div>
                       </div>
                     </form>
-                    <p className="text-muted-foreground mt-3 text-center text-sm">
+                    <p className="text-muted-foreground mt-2 text-center text-xs sm:mt-3 sm:text-sm">
                       Be the first to know when we launch.
                     </p>
                   </div>
@@ -216,90 +216,92 @@ export default function HeroSection() {
             </div>
 
             {/* Features Tabs Section */}
-            <div className="mx-auto mt-16 max-w-7xl px-6">
+            <div className="mx-auto mt-12 max-w-7xl px-4 sm:mt-16 sm:px-6">
               <Tabs defaultValue="crm" className="w-full">
-                <TabsList className="bg-muted/50 mx-auto flex h-12 w-fit rounded-xl border p-1 shadow-sm backdrop-blur-sm">
-                  <TabsTrigger
-                    value="crm"
-                    className="data-[state=active]:bg-background data-[state=active]:text-foreground hover:bg-background/50 flex items-center gap-2.5 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 data-[state=active]:shadow-sm"
-                  >
-                    <Users className="h-4 w-4" />
-                    <span>CRM</span>
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="finance"
-                    className="data-[state=active]:bg-background data-[state=active]:text-foreground hover:bg-background/50 flex items-center gap-2.5 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 data-[state=active]:shadow-sm"
-                  >
-                    <DollarSign className="h-4 w-4" />
-                    <span>Finance</span>
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="project"
-                    className="data-[state=active]:bg-background data-[state=active]:text-foreground hover:bg-background/50 flex items-center gap-2.5 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 data-[state=active]:shadow-sm"
-                  >
-                    <FolderKanban className="h-4 w-4" />
-                    <span>Projects</span>
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="hr"
-                    className="data-[state=active]:bg-background data-[state=active]:text-foreground hover:bg-background/50 flex items-center gap-2.5 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 data-[state=active]:shadow-sm"
-                  >
-                    <UserCheck className="h-4 w-4" />
-                    <span>HR</span>
-                  </TabsTrigger>
-                </TabsList>
+                <div className="overflow-x-auto">
+                  <TabsList className="bg-muted/50 mx-auto flex h-10 w-fit min-w-max rounded-lg border p-0.5 shadow-sm backdrop-blur-sm sm:h-12 sm:rounded-xl sm:p-1">
+                    <TabsTrigger
+                      value="crm"
+                      className="data-[state=active]:bg-background data-[state=active]:text-foreground hover:bg-background/50 flex items-center gap-1.5 rounded-md px-3 py-2 text-xs font-medium whitespace-nowrap transition-all duration-200 data-[state=active]:shadow-sm sm:gap-2.5 sm:rounded-lg sm:px-4 sm:py-2.5 sm:text-sm"
+                    >
+                      <Users className="h-3 w-3 sm:h-4 sm:w-4" />
+                      <span>CRM</span>
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="finance"
+                      className="data-[state=active]:bg-background data-[state=active]:text-foreground hover:bg-background/50 flex items-center gap-1.5 rounded-md px-3 py-2 text-xs font-medium whitespace-nowrap transition-all duration-200 data-[state=active]:shadow-sm sm:gap-2.5 sm:rounded-lg sm:px-4 sm:py-2.5 sm:text-sm"
+                    >
+                      <DollarSign className="h-3 w-3 sm:h-4 sm:w-4" />
+                      <span>Finance</span>
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="project"
+                      className="data-[state=active]:bg-background data-[state=active]:text-foreground hover:bg-background/50 flex items-center gap-1.5 rounded-md px-3 py-2 text-xs font-medium whitespace-nowrap transition-all duration-200 data-[state=active]:shadow-sm sm:gap-2.5 sm:rounded-lg sm:px-4 sm:py-2.5 sm:text-sm"
+                    >
+                      <FolderKanban className="h-3 w-3 sm:h-4 sm:w-4" />
+                      <span>Projects</span>
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="hr"
+                      className="data-[state=active]:bg-background data-[state=active]:text-foreground hover:bg-background/50 flex items-center gap-1.5 rounded-md px-3 py-2 text-xs font-medium whitespace-nowrap transition-all duration-200 data-[state=active]:shadow-sm sm:gap-2.5 sm:rounded-lg sm:px-4 sm:py-2.5 sm:text-sm"
+                    >
+                      <UserCheck className="h-3 w-3 sm:h-4 sm:w-4" />
+                      <span>HR</span>
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
 
-                <TabsContent value="crm" className="mt-4">
-                  <div className="ring-background bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 dark:inset-shadow-white/20">
-                    <div className="flex items-center justify-center rounded-2xl">
+                <TabsContent value="crm" className="mt-3 sm:mt-4">
+                  <div className="ring-background bg-background relative mx-auto max-w-6xl overflow-hidden rounded-xl border p-2 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 sm:rounded-2xl sm:p-4 dark:inset-shadow-white/20">
+                    <div className="flex items-center justify-center rounded-xl sm:rounded-2xl">
                       <img
                         src="/crm.png"
                         alt="CRM Dashboard Preview"
                         width={1200}
                         height={800}
-                        className="h-auto max-w-full rounded-2xl object-contain"
+                        className="h-auto max-w-full rounded-xl object-contain sm:rounded-2xl"
                       />
                     </div>
                   </div>
                 </TabsContent>
 
-                <TabsContent value="finance" className="mt-4">
-                  <div className="ring-background bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 dark:inset-shadow-white/20">
-                    <div className="flex items-center justify-center rounded-2xl">
+                <TabsContent value="finance" className="mt-3 sm:mt-4">
+                  <div className="ring-background bg-background relative mx-auto max-w-6xl overflow-hidden rounded-xl border p-2 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 sm:rounded-2xl sm:p-4 dark:inset-shadow-white/20">
+                    <div className="flex items-center justify-center rounded-xl sm:rounded-2xl">
                       <img
                         src="/finance.png"
                         alt="Finance Dashboard Preview"
                         width={1200}
                         height={800}
-                        className="h-auto max-w-full rounded-2xl object-contain"
+                        className="h-auto max-w-full rounded-xl object-contain sm:rounded-2xl"
                       />
                     </div>
                   </div>
                 </TabsContent>
 
-                <TabsContent value="project" className="mt-4">
-                  <div className="ring-background bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 dark:inset-shadow-white/20">
-                    <div className="flex items-center justify-center rounded-2xl">
+                <TabsContent value="project" className="mt-3 sm:mt-4">
+                  <div className="ring-background bg-background relative mx-auto max-w-6xl overflow-hidden rounded-xl border p-2 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 sm:rounded-2xl sm:p-4 dark:inset-shadow-white/20">
+                    <div className="flex items-center justify-center rounded-xl sm:rounded-2xl">
                       <img
                         src="/projects.png"
                         alt="Project Management Preview"
                         width={1200}
                         height={800}
-                        className="h-auto max-w-full rounded-2xl object-contain"
+                        className="h-auto max-w-full rounded-xl object-contain sm:rounded-2xl"
                       />
                     </div>
                   </div>
                 </TabsContent>
 
-                <TabsContent value="hr" className="mt-4">
-                  <div className="ring-background bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 dark:inset-shadow-white/20">
-                    <div className="flex items-center justify-center rounded-2xl">
+                <TabsContent value="hr" className="mt-3 sm:mt-4">
+                  <div className="ring-background bg-background relative mx-auto max-w-6xl overflow-hidden rounded-xl border p-2 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 sm:rounded-2xl sm:p-4 dark:inset-shadow-white/20">
+                    <div className="flex items-center justify-center rounded-xl sm:rounded-2xl">
                       <img
                         src="/hr.png"
                         alt="HR Dashboard Preview"
                         width={1200}
                         height={800}
-                        className="h-auto max-w-full rounded-2xl object-contain"
+                        className="h-auto max-w-full rounded-xl object-contain sm:rounded-2xl"
                       />
                     </div>
                   </div>
