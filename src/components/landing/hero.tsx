@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import {
   Mail,
   SendHorizontal,
@@ -7,12 +9,16 @@ import {
   DollarSign,
   FolderKanban,
   UserCheck,
+  Loader2,
+  Check,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TextEffect } from "@/components/motion-primitives/text-effect";
 import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
 import { HeroHeader } from "@/components/header";
+import { api } from "@/trpc/react";
+import { toast } from "sonner";
 
 const transitionVariants = {
   item: {
@@ -35,6 +41,35 @@ const transitionVariants = {
 };
 
 export default function HeroSection() {
+  const [email, setEmail] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const addToWaitingListMutation = api.email.addToWaitingList.useMutation({
+    onSuccess: (data) => {
+      if (data.success) {
+        console.log("Successfully joined the waitlist! 🎉");
+        setIsSubmitted(true);
+        setEmail("");
+        // Show success message to user
+        toast.success("Successfully joined the waitlist! 🎉");
+      } else {
+        console.error(data.message || "Something went wrong");
+        toast.error(data.message || "Something went wrong");
+      }
+    },
+    onError: (error) => {
+      console.error("Failed to join waitlist. Please try again.", error);
+      toast.error("Failed to join waitlist. Please try again.");
+    },
+  });
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) {
+      alert("Please enter a valid email address");
+      return;
+    }
+    addToWaitingListMutation.mutate({ email: email.trim() });
+  };
   return (
     <>
       <HeroHeader />
@@ -119,29 +154,59 @@ export default function HeroSection() {
                   className="mt-12 flex flex-col items-center justify-center"
                 >
                   <div className="w-full max-w-md">
-                    <div className="bg-background has-[input:focus]:ring-muted relative grid grid-cols-[1fr_auto] items-center rounded-[calc(var(--radius)+0.5rem)] border pr-2 shadow shadow-zinc-950/5 has-[input:focus]:ring-2">
-                      <Mail className="pointer-events-none absolute inset-y-0 left-4 my-auto size-4" />
+                    <form onSubmit={handleSubmit}>
+                      <div className="bg-background has-[input:focus]:ring-muted relative grid grid-cols-[1fr_auto] items-center rounded-[calc(var(--radius)+0.5rem)] border pr-2 shadow shadow-zinc-950/5 has-[input:focus]:ring-2">
+                        <Mail className="pointer-events-none absolute inset-y-0 left-4 my-auto size-4" />
 
-                      <input
-                        placeholder="Your mail address"
-                        className="h-12 w-full bg-transparent pl-12 focus:outline-none"
-                        type="email"
-                      />
+                        <input
+                          placeholder="Your mail address"
+                          className="h-12 w-full bg-transparent pl-12 focus:outline-none"
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          disabled={addToWaitingListMutation.isPending}
+                          required
+                        />
 
-                      <div className="md:pr-1.5 lg:pr-0">
-                        <Button
-                          aria-label="submit"
-                          size="sm"
-                          className="rounded-[calc(var(--radius))]"
-                        >
-                          <span className="hidden md:block">Join waitlist</span>
-                          <SendHorizontal
-                            className="relative mx-auto size-5 md:hidden"
-                            strokeWidth={2}
-                          />
-                        </Button>
+                        <div className="md:pr-1.5 lg:pr-0">
+                          <Button
+                            type="submit"
+                            aria-label="submit"
+                            size="sm"
+                            className="rounded-[calc(var(--radius))]"
+                            disabled={
+                              addToWaitingListMutation.isPending || isSubmitted
+                            }
+                          >
+                            {addToWaitingListMutation.isPending ? (
+                              <>
+                                <Loader2 className="h-4 w-4 animate-spin" />
+                                <span className="ml-2 hidden md:block">
+                                  Joining...
+                                </span>
+                              </>
+                            ) : isSubmitted ? (
+                              <>
+                                <Check className="h-4 w-4" />
+                                <span className="ml-2 hidden md:block">
+                                  Joined!
+                                </span>
+                              </>
+                            ) : (
+                              <>
+                                <span className="hidden md:block">
+                                  Join waitlist
+                                </span>
+                                <SendHorizontal
+                                  className="relative mx-auto size-5 md:hidden"
+                                  strokeWidth={2}
+                                />
+                              </>
+                            )}
+                          </Button>
+                        </div>
                       </div>
-                    </div>
+                    </form>
                     <p className="text-muted-foreground mt-3 text-center text-sm">
                       Be the first to know when we launch.
                     </p>
