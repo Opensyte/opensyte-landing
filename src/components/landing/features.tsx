@@ -17,7 +17,10 @@ import type { LucideIcon } from "lucide-react";
 
 export default function Features() {
   return (
-    <section className="from-background via-muted/20 to-background bg-gradient-to-b py-20 md:py-32">
+    <section
+      id="features"
+      className="from-background via-muted/20 to-background bg-gradient-to-b py-20 md:py-32"
+    >
       <div className="mx-auto max-w-2xl px-6 lg:max-w-6xl">
         {/* Section Header */}
         <div className="mb-16 text-center">
