@@ -125,7 +125,7 @@ export default function HeroSection() {
                   as="h1"
                   className="mx-auto mt-6 max-w-4xl text-3xl text-balance sm:mt-8 sm:text-4xl md:text-5xl lg:mt-16 xl:text-6xl"
                 >
-                  Manage your business 100x more easily
+                  Manage your business 100x easier
                 </TextEffect>
                 <TextEffect
                   per="line"
