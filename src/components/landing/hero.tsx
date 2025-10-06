@@ -1,24 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import {
-  Mail,
-  SendHorizontal,
   Users,
   DollarSign,
   FolderKanban,
   UserCheck,
-  Loader2,
-  Check,
+  ArrowRight,
 } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TextEffect } from "@/components/motion-primitives/text-effect";
 import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
 import { HeroHeader } from "@/components/header";
-import { api } from "@/trpc/react";
-import { toast } from "sonner";
 
 const transitionVariants = {
   item: {
@@ -41,35 +37,6 @@ const transitionVariants = {
 };
 
 export default function HeroSection() {
-  const [email, setEmail] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const addToWaitingListMutation = api.email.addToWaitingList.useMutation({
-    onSuccess: (data) => {
-      if (data.success) {
-        console.log("Successfully joined the waitlist! 🎉");
-        setIsSubmitted(true);
-        setEmail("");
-        // Show success message to user
-        toast.success("Successfully joined the waitlist! 🎉");
-      } else {
-        console.error(data.message || "Something went wrong");
-        toast.error(data.message || "Something went wrong");
-      }
-    },
-    onError: (error) => {
-      console.error("Failed to join waitlist. Please try again.", error);
-      toast.error("Failed to join waitlist. Please try again.");
-    },
-  });
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.trim()) {
-      alert("Please enter a valid email address");
-      return;
-    }
-    addToWaitingListMutation.mutate({ email: email.trim() });
-  };
   return (
     <>
       <HeroHeader />
@@ -153,64 +120,22 @@ export default function HeroSection() {
                   }}
                   className="mt-8 flex flex-col items-center justify-center px-4 sm:mt-12 sm:px-0"
                 >
-                  <div className="w-full max-w-sm sm:max-w-md">
-                    <form onSubmit={handleSubmit}>
-                      <div className="bg-background has-[input:focus]:ring-muted relative grid grid-cols-[1fr_auto] items-center rounded-[calc(var(--radius)+0.5rem)] border pr-1.5 shadow shadow-zinc-950/5 has-[input:focus]:ring-2 sm:pr-2">
-                        <Mail className="pointer-events-none absolute inset-y-0 left-3 my-auto size-4 sm:left-4" />
-
-                        <input
-                          placeholder="Your mail address"
-                          className="h-11 w-full bg-transparent pr-2 pl-10 text-sm focus:outline-none sm:h-12 sm:pl-12 sm:text-base"
-                          type="email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          disabled={addToWaitingListMutation.isPending}
-                          required
-                        />
-
-                        <div className="pr-0.5 sm:pr-1 md:pr-1.5 lg:pr-0">
-                          <Button
-                            type="submit"
-                            aria-label="submit"
-                            size="sm"
-                            className="rounded-[calc(var(--radius))]"
-                            disabled={
-                              addToWaitingListMutation.isPending || isSubmitted
-                            }
-                          >
-                            {addToWaitingListMutation.isPending ? (
-                              <>
-                                <Loader2 className="h-3 w-3 animate-spin sm:h-4 sm:w-4" />
-                                <span className="ml-1.5 hidden sm:ml-2 sm:block">
-                                  Joining...
-                                </span>
-                              </>
-                            ) : isSubmitted ? (
-                              <>
-                                <Check className="h-3 w-3 sm:h-4 sm:w-4" />
-                                <span className="ml-1.5 hidden sm:ml-2 sm:block">
-                                  Joined!
-                                </span>
-                              </>
-                            ) : (
-                              <>
-                                <span className="hidden sm:block">
-                                  Join waitlist
-                                </span>
-                                <SendHorizontal
-                                  className="relative mx-auto size-4 sm:hidden sm:size-5"
-                                  strokeWidth={2}
-                                />
-                              </>
-                            )}
-                          </Button>
-                        </div>
-                      </div>
-                    </form>
-                    <p className="text-muted-foreground mt-2 text-center text-xs sm:mt-3 sm:text-sm">
-                      Be the first to know when we launch.
-                    </p>
-                  </div>
+                  <Link
+                    href="https://app.opensyte.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button
+                      size="lg"
+                      className="group rounded-xl px-8 py-6 text-base shadow-lg sm:text-lg"
+                    >
+                      Get Started
+                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </Link>
+                  <p className="text-muted-foreground mt-4 text-center text-xs sm:text-sm">
+                    Try Opensyte Beta - Now Available
+                  </p>
                 </AnimatedGroup>
               </div>
             </div>

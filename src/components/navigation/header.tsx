@@ -24,12 +24,6 @@ export const HeroHeader = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToHero = () => {
-    const heroSection = document.querySelector("main");
-    if (heroSection) {
-      heroSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
   return (
     <header>
       <nav
@@ -94,13 +88,15 @@ export const HeroHeader = () => {
                 </ul>
               </div>
               <div className="flex w-full justify-center md:w-fit">
-                <Button
-                  onClick={scrollToHero}
-                  size="sm"
-                  className="rounded-lg px-4 py-2"
+                <Link
+                  href="https://app.opensyte.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <span>Join waitlist</span>
-                </Button>
+                  <Button size="sm" className="rounded-lg px-4 py-2">
+                    <span>Get Started</span>
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
